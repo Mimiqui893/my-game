@@ -1,0 +1,344 @@
+/* スタイルで位置を調整 */
+.center {
+  display: block;
+  margin: 0 auto;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.enemyposition {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
+
+.img {
+  width: auto;
+  /* 横幅 */
+  height: auto;
+  /* 高さは自動調整 */
+  
+}
+
+img {
+  user-drag: none;         /* Safari用 */
+  -webkit-user-drag: none; /* Chrome/Edge用 */
+  -moz-user-drag: none;    /* Firefox用 */
+  -o-user-drag: none;      /* 古いOpera用 */
+  pointer-events: none;    /* クリックも無効にしたいなら */
+}
+
+.cha1position {
+  position: absolute;
+  top: 50px;
+  right: 200px;
+
+}
+
+.cha2position {
+  position: absolute;
+  top: 50px;
+  right: 90px;
+
+}
+
+.cha3position {
+  position: absolute;
+  top: 120px;
+  right: 200px;
+
+}
+
+.cha4position {
+  position: absolute;
+  top: 120px;
+  right: 90px;
+
+}
+
+.cha5position {
+  position: absolute;
+  top: 230px;
+  right: 210px;
+
+}
+
+.cha6position {
+  position: absolute;
+  top: 230px;
+  right: 60px;
+
+}
+
+
+
+/* <title>上下分割ゲーム画面</title>*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.top-screen,
+.bottom-screen {
+  height: 50%;
+  width: 100%;
+  position: relative;
+}
+
+.top-screen {
+  background-color: #222;
+  /* 上画面の色（例） */
+  background-image: url("gif/ef646a36-5695-45bf-bbe6-f071ca2f12b3.png"); /* ← 画像ファイルのパス */
+  color: white;
+  height: 400px;
+  background-size: cover;    /* 画面いっぱいに表示 */
+  background-position: center; /* 中央寄せ */
+  position: relative; /* 子要素のabsolute配置の基準 */
+  height: 400px;
+  color: white;
+  
+}
+
+/* <title>下ゲーム画面</title>*/
+.bottom-screen {
+  background-color: #eee;
+  /* 下画面の色（例） */
+  color: black;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* 3列 */
+  gap: 10px;
+  padding: 20px;
+}
+
+
+
+.active {
+  background-color: black !important;
+  
+  color: white;
+}
+
+
+.hp-row {
+  position: absolute;
+  bottom: 0;
+  font-size: 18px;
+  background: rgba(2, 2, 2, 0); /* 半透明背景を付ける例 */
+  border-radius: 5px;
+}
+
+.stats-container {
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+  /* border-radius: 20px; */
+}
+
+.stats-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: 100% 40%;
+}
+.sub-button {
+  position: absolute;
+  height: 90%;
+  width: 35%;
+  bottom: 20px;
+  right: 35%;
+  padding: 4px 8px;
+  font-size: 12px;
+  border: none;
+  /* border-radius: 6px; */
+  background-color: #5992e7ad;
+  color: white;
+  cursor: pointer;
+}
+
+.sub-button2 {
+  position: absolute;
+  height: 90%;
+  width: 35%;
+  bottom: 20px;
+  right: 0%;
+  padding: 4px 8px;
+  font-size: 12px;
+  border: none;
+  /* border-radius: 6px; */
+  background-color: #b3b45dc5;
+  color: white;
+  cursor: pointer;
+}
+.sub-button:disabled {
+  background-color: #99999975;
+  cursor: not-allowed;
+}
+.sub-button2.disabled {
+  background-color: #555;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* HPゲージ */
+.hp-bar-char {
+  width: 100%;
+  height: 20px;
+  background-color: #ccc;
+  border: 1px solid #333;
+  position: absolute;
+  bottom: 0;
+}
+
+.hp-bar {
+  width: 200px;
+  /* HPゲージの長さ */
+  height: 0px;
+  /* 高さ */
+  background-color: #ccc;
+  /* 背景（減った部分） */
+  border: 1px solid #333;
+  position: relative;
+}
+
+
+.hp-bar-boss {
+  width: 100vw;
+  /* HPゲージの長さ */
+  height: 15px;
+  /* 高さ */
+  background-color: #acacac;
+  /* 背景（減った部分） */
+  border: 0px solid #333;
+  position: relative;
+}
+
+.hp-fill {
+  height: 20px;
+  background-color: limegreen;
+  /* HP残量の色 */
+  width: 100%;
+  /* 初期値は最大HP */
+  transition: width 0.3s;
+  /* 減るときにアニメーション */
+  position: bottom;
+}
+
+/* SPゲージ */
+.sp-bar-char {
+  width: 100%;
+  height: 20px;
+  background-color: #555;
+  border: 1px solid #333;
+  margin: 3px 0;
+  position: absolute;
+  bottom: -15px;
+  ;   /* 枠外にはみ出さないように */
+}
+
+/* 青ゲージ */
+.sp-fill-blue {
+  height: 100%;
+  background-color: deepskyblue;
+  width: 0%; /* 初期値 */
+  transition: width 0.3s;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* 金ゲージ */
+.sp-fill-gold {
+  height: 100%;
+  background-color: gold;
+  width: 0%; /* 初期値 */
+  transition: width 0.3s;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.action-button.disabled {
+  pointer-events: none;      /* クリックできなくする */
+  opacity: 0.5;              /* 半透明にしてブラックアウト風 */
+  filter: grayscale(50%);   /* 白黒化で「使用不可」感を出す */
+}
+
+#battle-message {
+  position: absolute;
+  bottom: 40px;       /* BOSSのHPゲージの上に配置 */
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.918);
+  text-shadow: 2px 2px 4px rgb(0, 0, 0);
+  pointer-events: none; /* クリック無効化 */
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+/* ダメージ表示 */
+.damage-text {
+  position: absolute;
+  font-size: 28px;
+  font-weight: bold;
+  color: rgb(228, 228, 228);
+  text-shadow: 2px 2px 4px black;
+  pointer-events: none;
+  opacity: 1;
+  transform: translate(-50%, 0);
+  animation: floatUp 1s ease-out forwards;
+  z-index: 9999;
+}
+
+/* スパーク表示 */
+
+#effect-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* クリック操作に干渉しない */
+  z-index: 9999;
+}
+
+.spark-text {
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(162, 234, 247);
+  text-shadow: 0 0 5px rgb(86, 67, 255), 0 0 10px rgb(0, 0, 0);
+  animation: fadeUp 1s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-50px); }
+}
+
+
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -60px);
+  }
+}

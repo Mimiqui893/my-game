@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<!-- BGMファイルを読み込み（ループ再生・自動再生） -->
+<audio id="bgm" src="sound/爆燃する衝動.mp3" autoplay loop></audio>
+
+<head>
+  <meta charset="UTF-8">
+  <title>JS Test</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- <script src="script.js"></script> -->
+  <script src="test.js"></script>
+  <script src="characters.js"></script>
+</head>
+
+<body>
+  <!--上画面（ゲーム表示）-->
+  <div class="top-screen" id="top">
+    <div class="hp-row">Boss:
+      <span id="hp-boss">10000</span>
+      <div class="hp-bar-boss">
+        <div id="bar-boss" class="hp-fill"></div>
+      </div>
+
+    </div>
+
+    <!-- エフェクト表示用のレイヤー -->
+    <div id="effect-layer"></div>
+
+    <img src="gif\staymotions\Unit_ills_anime_51147_flipped_animated.webp" alt="GIFアニメ" class="enemyposition" width="200">
+    <!-- ★ メッセージ表示エリア -->
+    <div id="battle-message"></div>
+
+    <img id="char1" src="gif\staymotions\Unit_ills_anime_50657.webp" alt="GIFアニメ" class="cha1position img" width="200">
+    <img id="char2" src="gif\staymotions\1455.webp" alt="GIFアニメ" class="cha2position img" width="200">
+    <img id="char3" src="gif\staymotions\1388.webp" alt="GIFアニメ" class="cha3position img" width="200">
+    <img id="char4" src="gif\staymotions\1255.webp" alt="GIFアニメ" class="cha4position img" width="200">
+    <img id="char5" src="gif\staymotions\1537.webp" alt="GIFアニメ" class="cha5position img" width="200">
+    <img id="char6" src="gif\staymotions\1492.webp" alt="GIFアニメ" class="cha6position img" width="200">
+  </div>
+
+  <!--下画面（操作パネルなど）-->
+  <div class="bottom-screen" id="bottom">
+
+    <!-- char1 -->
+    <div class="action-button stats-bar" onclick="action(1,this); moveLeft('char1')">
+      <div class="stats-container">
+        <img src="gif/icons/Unit_ills_full_50657.webp" alt="GIFアニメ">
+        <!-- HPゲージ -->
+        <div class="hp-bar-char">
+          <div id="bar-char1" class="hp-fill"></div>
+        </div>
+        <span id="hp-char1">100</span>
+        <!-- SPゲージ -->
+        <div class="sp-bar-char">
+          <div id="sp-blue-char1" class="sp-fill-blue"></div>
+          <div id="sp-gold-char1" class="sp-fill-gold"></div>
+        </div>
+        <span id="sp-char1">0</span>
+        <!-- スキルボタン -->
+        <button id="skill-char1" class="sub-button" onclick="useSkill(event,'char1')">スキル</button>
+        <button id="skill2-char1" class="sub-button2" onclick="useSkill2(event,'char1')">スキル2</button>
+      </div>
+    </div>
+
+    <!-- char2 -->
+    <div class="action-button stats-bar" onclick="action(2,this); moveLeft('char2')">
+      <div class="stats-container">
+        <img src="gif/icons/Unit_ills_full_50477.webp" alt="GIFアニメ">
+        <div class="hp-bar-char">
+          <div id="bar-char2" class="hp-fill"></div>
+        </div>
+        <span id="hp-char2">100</span>
+        <div class="sp-bar-char">
+          <div id="sp-blue-char2" class="sp-fill-blue"></div>
+          <div id="sp-gold-char2" class="sp-fill-gold"></div>
+        </div>
+        <span id="sp-char2">0</span>
+        <button id="skill-char2" class="sub-button" onclick="useSkill(event,'char2')">スキル</button>
+        <button id="skill2-char2" class="sub-button2" onclick="useSkill2(event,'char2')">スキル2</button>
+      </div>
+    </div>
+
+    <!-- char3 -->
+    <div class="action-button stats-bar" onclick="action(3,this); moveLeft('char3')">
+      <div class="stats-container">
+        <img src="gif/icons/Unit_ills_full_50757.webp" alt="GIFアニメ">
+        <div class="hp-bar-char">
+          <div id="bar-char3" class="hp-fill"></div>
+        </div>
+        <span id="hp-char3">100</span>
+        <div class="sp-bar-char">
+          <div id="sp-blue-char3" class="sp-fill-blue"></div>
+          <div id="sp-gold-char3" class="sp-fill-gold"></div>
+        </div>
+        <span id="sp-char3">0</span>
+        <button id="skill-char3" class="sub-button" onclick="useSkill(event,'char3')">スキル</button>
+        <button id="skill2-char3" class="sub-button2" onclick="useSkill2(event,'char3')">スキル2</button>
+      </div>
+    </div>
+
+    <!-- char4 -->
+    <div class="action-button stats-bar" onclick="action(4,this); moveLeft('char4')">
+      <div class="stats-container">
+        <img src="gif/icons/Unit_ills_full_60326.webp" alt="GIFアニメ">
+        <div class="hp-bar-char">
+          <div id="bar-char4" class="hp-fill"></div>
+        </div>
+        <span id="hp-char4">100</span>
+        <div class="sp-bar-char">
+          <div id="sp-blue-char4" class="sp-fill-blue"></div>
+          <div id="sp-gold-char4" class="sp-fill-gold"></div>
+        </div>
+        <span id="sp-char4">0</span>
+        <button id="skill-char4" class="sub-button" onclick="useSkill(event,'char4')">スキル</button>
+        <button id="skill2-char4" class="sub-button2" onclick="useSkill2(event,'char4')">スキル2</button>
+      </div>
+    </div>
+
+    <!-- char5 -->
+    <div class="action-button stats-bar" onclick="action(5,this); moveLeft('char5')">
+      <div class="stats-container">
+        <img src="gif/icons/Unit_ills_full_10557.webp" alt="GIFアニメ">
+        <div class="hp-bar-char">
+          <div id="bar-char5" class="hp-fill"></div>
+        </div>
+        <span id="hp-char5">100</span>
+        <div class="sp-bar-char">
+          <div id="sp-blue-char5" class="sp-fill-blue"></div>
+          <div id="sp-gold-char5" class="sp-fill-gold"></div>
+        </div>
+        <span id="sp-char5">0</span>
+        <button id="skill-char5" class="sub-button" onclick="useSkill(event,'char5')">スキル</button>
+        <button id="skill2-char5" class="sub-button2" onclick="useSkill2(event,'char5')">スキル2</button>
+      </div>
+    </div>
+
+    <!-- char6 -->
+    <div class="action-button stats-bar" onclick="action(6,this); moveLeft('char6')">
+      <div class="stats-container">
+        <img src="gif/icons/Unit_ills_full_20157.webp" alt="GIFアニメ">
+        <div class="hp-bar-char">
+          <div id="bar-char6" class="hp-fill"></div>
+        </div>
+        <span id="hp-char6">100</span>
+        <div class="sp-bar-char">
+          <div id="sp-blue-char6" class="sp-fill-blue"></div>
+          <div id="sp-gold-char6" class="sp-fill-gold"></div>
+        </div>
+        <span id="sp-char6">0</span>
+        <button id="skill-char6" class="sub-button" onclick="useSkill(event,'char6')">スキル</button>
+        <button id="skill2-char6" class="sub-button2" onclick="useSkill2(event,'char6')">スキル2</button>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+</body>
+
+</html><!-- index.html -->
